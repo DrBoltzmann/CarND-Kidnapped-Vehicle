@@ -1,3 +1,47 @@
+[image001]: particle_filter_flow.png "particle_filter_flow"
+[image002]: kinapped_vehicle_result.png "kinapped_vehicle_result"
+
+# CarND-Kidnapped-Vehicle
+---
+## Kidnapped Vehicle Project
+---
+
+### Overview
+This project is focused on the implementation of a 2D Particle Filter in C++ with a map and some initial localization information as input. At each time step the filter recieves observation and control data. Essentially there is an environment map with known landmark locations and range measurments (LiDAR data) the provides the observed location of landmarks from the perspective of the vehicle. Additionally the vehicle control data is known. The challenge is to localize the vehicle in the environment.
+
+![alt text][image001]
+
+The particle filter is implemented in four stages:
+* Particle Initialization
+* Position Prediction
+* Update Step
+* Resample Step
+
+The project rubic can be accessed here:
+https://review.udacity.com/#!/rubrics/747/view
+
+### Particle Initialization
+During initialization particles are generated and the vehicle position is estimated from the GPS data input (x, y, theta and their uncertainties). Random Gaussian noise is added to each particle.
+
+### Position Prediction
+During the prediction measurements (yaw rate & velocity) are added to each particle along with random Gaussian noise.
+
+### Update Step
+In update, the weights of each particle are updated using a mult-variate Gaussian distribution based on the sensor readings of the surrounding landmarks. This includes transformation, association and weights updates.
+
+### Resample Step
+In resampling, new random particles are drawn from the old ones, in proportion to their weights. Higher weights have a higher probability of remaining while the lower weight resampled particles will disappear.
+
+### Result
+https://youtu.be/2NeIeFpKZDc
+![alt text][image002]
+
+
+---
+# Udacity README Content
+### This describes the original project description and details for necessary dependencies, packages, and build instructions.
+---
+
 # Overview
 This repository contains all the code needed to complete the final project for the Localization course in Udacity's Self-Driving Car Nanodegree.
 
